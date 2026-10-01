@@ -1,4 +1,4 @@
-package de.solidblocks.examples.javaspringwuphf
+package com.example.wuphf
 
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
@@ -14,7 +14,7 @@ class SecretsTest {
     @ValueSource(
         strings =
             [
-                "BLCKS_DATABASE1_WUPHF_PASSWORD",
+                "DATABASE_PASSWORD",
                 "password",
                 "PgPassWd",
                 "MY_SECRET",
@@ -42,9 +42,9 @@ class SecretsTest {
                 "HOME",
                 "LANG",
                 "JAVA_HOME",
-                "BLCKS_DATABASE1_HOST",
-                "BLCKS_DATABASE1_PORT",
-                "BLCKS_DATABASE1_WUPHF_USER",
+                "DATABASE_HOST",
+                "DATABASE_PORT",
+                "DATABASE_USER",
             ]
     )
     fun `names that may show a value`(name: String) {

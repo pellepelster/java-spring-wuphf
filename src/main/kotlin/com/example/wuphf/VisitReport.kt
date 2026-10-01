@@ -1,4 +1,4 @@
-package de.solidblocks.examples.javaspringwuphf
+package com.example.wuphf
 
 data class VisitReport(
     val visited: Long,

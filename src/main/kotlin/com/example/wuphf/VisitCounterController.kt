@@ -1,4 +1,4 @@
-package de.solidblocks.examples.javaspringwuphf
+package com.example.wuphf
 
 import java.nio.charset.StandardCharsets
 import org.springframework.http.HttpHeaders

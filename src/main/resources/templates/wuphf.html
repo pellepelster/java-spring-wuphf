@@ -178,11 +178,11 @@
       <section class="card" th:with="environment=${report.environment}">
         <h2>What the process was handed</h2>
         <div class="link-group">
-          <h3>Link variables<span class="pill" th:text="${environment.link.size()}">0</span></h3>
-          <p class="note" th:if="${environment.link.isEmpty()}">No link variables. This one is a lone dog.</p>
-          <th:block th:unless="${environment.link.isEmpty()}">
-            <p class="note">A blcks link put these here.</p>
-            <table th:replace="~{wuphf-variables :: variables(${environment.link})}"></table>
+          <h3>Database variables<span class="pill" th:text="${environment.database.size()}">0</span></h3>
+          <p class="note" th:if="${environment.database.isEmpty()}">No database variables. This one is a lone dog.</p>
+          <th:block th:unless="${environment.database.isEmpty()}">
+            <p class="note">These tell the application where its database is.</p>
+            <table th:replace="~{wuphf-variables :: variables(${environment.database})}"></table>
           </th:block>
         </div>
         <details>
@@ -190,7 +190,7 @@
           <table th:replace="~{wuphf-variables :: variables(${environment.other})}"></table>
         </details>
       </section>
-      <footer>WUPHF.com &mdash; a demo service for blcks. No dogs were disturbed.</footer>
+      <footer>WUPHF.com &mdash; a demo service. No dogs were disturbed.</footer>
     </div>
   </body>
 </html>

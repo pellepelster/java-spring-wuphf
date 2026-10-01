@@ -1,4 +1,4 @@
-package de.solidblocks.examples.javaspringwuphf
+package com.example.wuphf
 
 interface VisitCounter {
     fun recordVisit(): Long

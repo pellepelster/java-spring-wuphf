@@ -8,3 +8,11 @@ run = "./gradlew dist"
 [tasks.test]
 description = "Run all tests, the ones against postgres need docker"
 run = "./gradlew test"
+
+[tasks.image]
+description = "Build the docker image java-spring-wuphf:latest, needs docker"
+run = "./gradlew bootBuildImage"
+
+[tasks.publish]
+description = "Build the docker image and push it to $IMAGE, needs $REGISTRY_USERNAME and $REGISTRY_PASSWORD"
+run = "./gradlew bootBuildImage --publishImage"

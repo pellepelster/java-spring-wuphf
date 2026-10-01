@@ -1,4 +1,4 @@
-package de.solidblocks.examples.javaspringwuphf
+package com.example.wuphf
 
 import org.springframework.stereotype.Component
 import org.thymeleaf.ITemplateEngine

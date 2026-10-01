@@ -1,4 +1,4 @@
-package de.solidblocks.examples.javaspringwuphf
+package com.example.wuphf
 
 import java.util.concurrent.atomic.AtomicLong
 import org.springframework.context.annotation.Profile

@@ -1,4 +1,4 @@
-package de.solidblocks.examples.javaspringwuphf
+package com.example.wuphf
 
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
@@ -12,8 +12,9 @@ import javax.sql.DataSource
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.web.client.TestRestTemplate
-import org.springframework.boot.test.web.client.exchange
+import org.springframework.boot.resttestclient.TestRestTemplate
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureTestRestTemplate
+import org.springframework.boot.resttestclient.exchange
 import org.springframework.context.ApplicationContext
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
@@ -22,6 +23,7 @@ import org.springframework.http.MediaType
 import org.springframework.test.context.ActiveProfiles
 
 @ActiveProfiles(ExampleApplication.MEMORY_PROFILE)
+@AutoConfigureTestRestTemplate
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class MemoryIntegrationTest(
     @Autowired private val http: TestRestTemplate,

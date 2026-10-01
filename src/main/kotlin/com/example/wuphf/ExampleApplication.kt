@@ -1,4 +1,4 @@
-package de.solidblocks.examples.javaspringwuphf
+package com.example.wuphf
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -12,7 +12,7 @@ class ExampleApplication {
         const val DATABASE_PROFILE = "database"
         const val MEMORY_PROFILE = "memory"
 
-        const val HOST_VARIABLE = "BLCKS_DATABASE1_HOST"
+        const val HOST_VARIABLE = "DATABASE_HOST"
 
         fun profile(host: String?) = if (host.isNullOrBlank()) MEMORY_PROFILE else DATABASE_PROFILE
     }

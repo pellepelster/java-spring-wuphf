@@ -1,4 +1,4 @@
-package de.solidblocks.examples.javaspringwuphf
+package com.example.wuphf
 
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.maps.shouldBeEmpty

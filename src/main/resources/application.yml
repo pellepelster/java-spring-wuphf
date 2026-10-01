@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: blcks-java-spring-wuphf
+    name: java-spring-wuphf
 
 ---
 spring:
@@ -12,8 +12,8 @@ spring:
       on-profile: memory
   autoconfigure:
     exclude:
-      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
-      - org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration
+      - org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration
+      - org.springframework.boot.liquibase.autoconfigure.LiquibaseAutoConfiguration
 
 ---
 spring:
@@ -21,8 +21,8 @@ spring:
     activate:
       on-profile: database
   datasource:
-    url: jdbc:postgresql://${BLCKS_DATABASE1_HOST}:${BLCKS_DATABASE1_PORT}/${BLCKS_DATABASE1_WUPHF_DATABASE}
-    username: ${BLCKS_DATABASE1_WUPHF_USER}
-    password: ${BLCKS_DATABASE1_WUPHF_PASSWORD}
+    url: jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.yaml

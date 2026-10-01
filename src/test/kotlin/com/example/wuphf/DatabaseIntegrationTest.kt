@@ -1,4 +1,4 @@
-package de.solidblocks.examples.javaspringwuphf
+package com.example.wuphf
 
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.maps.shouldContainAll
@@ -11,8 +11,9 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.web.client.TestRestTemplate
-import org.springframework.boot.test.web.client.exchange
+import org.springframework.boot.resttestclient.TestRestTemplate
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureTestRestTemplate
+import org.springframework.boot.resttestclient.exchange
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod
@@ -21,12 +22,13 @@ import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
-import org.testcontainers.containers.PostgreSQLContainer
+import org.testcontainers.postgresql.PostgreSQLContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
 
 @Testcontainers
 @ActiveProfiles(ExampleApplication.DATABASE_PROFILE)
+@AutoConfigureTestRestTemplate
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class DatabaseIntegrationTest(
     @Autowired private val http: TestRestTemplate,
@@ -116,7 +118,7 @@ class DatabaseIntegrationTest(
 
         @Container
         @JvmStatic
-        val postgres: PostgreSQLContainer<*> =
+        val postgres: PostgreSQLContainer =
             PostgreSQLContainer("postgres:17-alpine")
                 .withDatabaseName(DATABASE)
                 .withUsername(USER)
@@ -124,14 +126,14 @@ class DatabaseIntegrationTest(
 
         @DynamicPropertySource
         @JvmStatic
-        fun link(registry: DynamicPropertyRegistry) {
-            registry.add("BLCKS_DATABASE1_HOST", postgres::getHost)
-            registry.add("BLCKS_DATABASE1_PORT") {
+        fun database(registry: DynamicPropertyRegistry) {
+            registry.add("DATABASE_HOST", postgres::getHost)
+            registry.add("DATABASE_PORT") {
                 postgres.getMappedPort(PostgreSQLContainer.POSTGRESQL_PORT)
             }
-            registry.add("BLCKS_DATABASE1_WUPHF_DATABASE") { DATABASE }
-            registry.add("BLCKS_DATABASE1_WUPHF_USER") { USER }
-            registry.add("BLCKS_DATABASE1_WUPHF_PASSWORD") { PASSWORD }
+            registry.add("DATABASE_NAME") { DATABASE }
+            registry.add("DATABASE_USER") { USER }
+            registry.add("DATABASE_PASSWORD") { PASSWORD }
         }
     }
 }

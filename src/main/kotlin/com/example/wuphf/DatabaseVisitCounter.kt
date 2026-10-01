@@ -1,9 +1,9 @@
-package de.solidblocks.examples.javaspringwuphf
+package com.example.wuphf
 
 import java.net.URI
 import java.sql.Timestamp
 import java.time.Instant
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties
+import org.springframework.boot.jdbc.autoconfigure.DataSourceProperties
 import org.springframework.context.annotation.Profile
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Component

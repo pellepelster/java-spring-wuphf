@@ -1,4 +1,4 @@
-package de.solidblocks.examples.javaspringwuphf
+package com.example.wuphf
 
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
@@ -15,7 +15,7 @@ class ExampleApplicationTest {
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = ["  ", "\t"])
-    fun `without a link the visits stay in the process`(host: String?) {
+    fun `without a database the visits stay in the process`(host: String?) {
         ExampleApplication.profile(host) shouldBe ExampleApplication.MEMORY_PROFILE
     }
 }

@@ -1,4 +1,4 @@
-package de.solidblocks.examples.javaspringwuphf
+package com.example.wuphf
 
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.maps.shouldContainAll
@@ -8,7 +8,7 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldNotContain
 import org.junit.jupiter.api.Test
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties
+import org.springframework.boot.jdbc.autoconfigure.DataSourceProperties
 
 class DatabaseVisitCounterTest {
     private fun properties(url: String) =

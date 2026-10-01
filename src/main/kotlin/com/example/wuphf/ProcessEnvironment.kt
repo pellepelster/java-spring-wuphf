@@ -1,4 +1,4 @@
-package de.solidblocks.examples.javaspringwuphf
+package com.example.wuphf
 
 class ProcessEnvironment(environment: Map<String, String>) {
     private val report = report(environment)
@@ -6,14 +6,14 @@ class ProcessEnvironment(environment: Map<String, String>) {
     fun report() = report
 
     companion object {
-        const val LINK_PREFIX = "BLCKS_"
+        const val DATABASE_PREFIX = "DATABASE_"
 
         private val BY_NAME =
             compareBy<EnvironmentVariable, String>(String.CASE_INSENSITIVE_ORDER) { it.name }
                 .thenBy { it.name }
 
         private fun report(environment: Map<String, String>): EnvironmentReport {
-            val (link, other) =
+            val (database, other) =
                 environment
                     .map { (name, value) ->
                         EnvironmentVariable(
@@ -22,9 +22,9 @@ class ProcessEnvironment(environment: Map<String, String>) {
                             Secrets.isSecretName(name),
                         )
                     }
-                    .partition { it.name.startsWith(LINK_PREFIX) }
+                    .partition { it.name.startsWith(DATABASE_PREFIX) }
 
-            return EnvironmentReport(link.sortedWith(BY_NAME), other.sortedWith(BY_NAME))
+            return EnvironmentReport(database.sortedWith(BY_NAME), other.sortedWith(BY_NAME))
         }
     }
 }

@@ -1,4 +1,4 @@
-package de.solidblocks.examples.javaspringwuphf
+package com.example.wuphf
 
 import io.kotest.matchers.comparables.shouldBeLessThan
 import io.kotest.matchers.string.shouldContain
@@ -46,24 +46,24 @@ class WuphfPageTest {
 
     @Test
     fun `a secret value is not on the page`() {
-        val page = page(mapOf("BLCKS_DATABASE1_WUPHF_PASSWORD" to "hunter2"), MEMORY)
+        val page = page(mapOf("DATABASE_PASSWORD" to "hunter2"), MEMORY)
 
         page shouldNotContain "hunter2"
-        page shouldContain "BLCKS_DATABASE1_WUPHF_PASSWORD"
+        page shouldContain "DATABASE_PASSWORD"
         page shouldContain Secrets.MASK
     }
 
     @Test
-    fun `the link variables and the rest are shown apart`() {
-        val page = page(mapOf("BLCKS_DATABASE1_HOST" to "10.0.0.42", "PATH" to "/usr/bin"), MEMORY)
+    fun `the database variables and the rest are shown apart`() {
+        val page = page(mapOf("DATABASE_HOST" to "10.0.0.42", "PATH" to "/usr/bin"), MEMORY)
 
-        page shouldContain "Link variables"
+        page shouldContain "Database variables"
         page shouldContain "more from the process"
-        page.indexOf("BLCKS_DATABASE1_HOST") shouldBeLessThan page.indexOf("PATH")
+        page.indexOf("DATABASE_HOST") shouldBeLessThan page.indexOf("PATH")
     }
 
     @Test
-    fun `the page says so when no link gave it anything`() {
+    fun `the page says so when no database variables are set`() {
         page(mapOf("PATH" to "/usr/bin"), MEMORY) shouldContain "lone dog"
     }
 

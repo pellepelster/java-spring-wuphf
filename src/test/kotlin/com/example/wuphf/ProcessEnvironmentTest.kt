@@ -1,4 +1,4 @@
-package de.solidblocks.examples.javaspringwuphf
+package com.example.wuphf
 
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldBeEmpty
@@ -12,19 +12,19 @@ class ProcessEnvironmentTest {
     private fun report(environment: Map<String, String>) = ProcessEnvironment(environment).report()
 
     @Test
-    fun `the link variables are one group and the rest another`() {
+    fun `the database variables are one group and the rest another`() {
         val report =
             report(
                 mapOf(
-                    "BLCKS_DATABASE1_HOST" to "10.0.0.42",
-                    "BLCKS_DATABASE1_PORT" to "5432",
+                    "DATABASE_HOST" to "10.0.0.42",
+                    "DATABASE_PORT" to "5432",
                     "PATH" to "/usr/bin",
                     "HOME" to "/opt/visits",
                 )
             )
 
-        report.link.map { it.name } shouldContainExactly
-            listOf("BLCKS_DATABASE1_HOST", "BLCKS_DATABASE1_PORT")
+        report.database.map { it.name } shouldContainExactly
+            listOf("DATABASE_HOST", "DATABASE_PORT")
         report.other.map { it.name } shouldContainExactly listOf("HOME", "PATH")
     }
 
@@ -40,8 +40,8 @@ class ProcessEnvironmentTest {
     fun `a secret value is replaced and the name stays`() {
         val report = report(mapOf(PASSWORD to "hunter2"))
 
-        report.link shouldHaveSize 1
-        val variable = report.link.single()
+        report.database shouldHaveSize 1
+        val variable = report.database.single()
         variable.name shouldBe PASSWORD
         variable.value shouldBe Secrets.MASK
         variable.secret.shouldBeTrue()
@@ -57,11 +57,11 @@ class ProcessEnvironmentTest {
     fun `an empty environment gives two empty groups`() {
         val report = report(emptyMap())
 
-        report.link.shouldBeEmpty()
+        report.database.shouldBeEmpty()
         report.other.shouldBeEmpty()
     }
 
     private companion object {
-        const val PASSWORD = "BLCKS_DATABASE1_WUPHF_PASSWORD"
+        const val PASSWORD = "DATABASE_PASSWORD"
     }
 }
